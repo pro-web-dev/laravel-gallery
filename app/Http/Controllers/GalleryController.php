@@ -57,8 +57,7 @@ class GalleryController extends Controller
      */
     public function edit($id)
     {
-        dd(123);
-//        return view('pages.edit');
+        return view('pages.edit');
     }
 
     /**
