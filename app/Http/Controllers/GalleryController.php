@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Gallery;
 use Illuminate\Http\Request;
 
 class GalleryController extends Controller
@@ -35,7 +36,8 @@ class GalleryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $image = Gallery::add($request->all());
+        $image->uploadImage($request->allFiles());
     }
 
     /**
