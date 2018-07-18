@@ -10,11 +10,6 @@ class Gallery extends Model
     protected $fillable = ['image'];
     protected $table = 'images';
 
-    public static function add($fields)
-    {
-        return new static;
-    }
-
     public function uploadImage($image)
     {
         if($image == null) return;

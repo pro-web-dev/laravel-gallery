@@ -40,8 +40,7 @@ class GalleryController extends Controller
         $this->validate($request, [
             'image' => 'required'
         ]);
-        $image = Gallery::add($request->all());
-        $image->uploadImage($request->file('image'));
+        (new Gallery)->uploadImage($request->file('image'));
 
         return redirect()->route('gallery.index');
     }
