@@ -14,7 +14,8 @@ class GalleryController extends Controller
      */
     public function index()
     {
-        return view('pages.index');
+        $images = Gallery::all();
+        return view('pages.index', ['images' => $images]);
     }
 
     /**
@@ -36,6 +37,9 @@ class GalleryController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'image' => 'required'
+        ]);
         $image = Gallery::add($request->all());
         $image->uploadImage($request->file('image'));
 
@@ -50,7 +54,8 @@ class GalleryController extends Controller
      */
     public function show($id)
     {
-        return view('pages.show');
+        $image = Gallery::find($id);
+        return view('pages.show', ['image' => $image]);
     }
 
     /**
@@ -61,7 +66,8 @@ class GalleryController extends Controller
      */
     public function edit($id)
     {
-        return view('pages.edit');
+        $image = Gallery::find($id);
+        return view('pages.edit', ['image' => $image]);
     }
 
     /**
@@ -73,7 +79,13 @@ class GalleryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'image' => 'required'
+        ]);
+        $image = Gallery::find($id);
+        $image->uploadImage($request->file('image'));
+
+        return redirect()->route('gallery.index');
     }
 
     /**
@@ -84,6 +96,7 @@ class GalleryController extends Controller
      */
     public function destroy($id)
     {
-        //
-    }
+        Gallery::find($id)->remove();
+        return redirect()->route('gallery.index');
+}
 }
