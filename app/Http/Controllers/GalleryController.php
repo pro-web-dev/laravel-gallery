@@ -37,7 +37,9 @@ class GalleryController extends Controller
     public function store(Request $request)
     {
         $image = Gallery::add($request->all());
-        $image->uploadImage($request->allFiles());
+        $image->uploadImage($request->file('image'));
+
+        return redirect()->route('gallery.index');
     }
 
     /**
