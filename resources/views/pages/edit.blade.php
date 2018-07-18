@@ -6,7 +6,7 @@
             <div class="col-sm-5">
                 <h1>Edit Image</h1>
                 @include('errors')
-                <img src="{{ $image->getImage() }}" class="img-thumbnail w-100">
+                <img src="/{{ $image->getImage() }}" class="img-thumbnail w-100">
                 {!! Form::open([
                     'route' => ['gallery.update', $image->id],
                     'files' => true,

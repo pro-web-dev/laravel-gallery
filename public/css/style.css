@@ -1,0 +1,14 @@
+.gallery img{
+    object-fit: cover;
+}
+
+.gallery .box img{
+    height: 310px;
+}
+
+.gallery .btn{
+    width: 100%;
+    display: block;
+    margin: 7px 0;
+    padding: 3px 0;
+}

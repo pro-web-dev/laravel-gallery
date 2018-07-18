@@ -19,22 +19,21 @@ class Gallery extends Model
     {
         if($image == null) return;
         $this->removeImage();
-        $filename = str_random(10) . '.' . $image->extension();
-        $image->storeAs('uploads', $filename);
+        $filename = $image->store('uploads');
         $this->image = $filename;
         $this->save();
     }
 
     public function removeImage()
     {
-        if($this->imgae != null){
-            Storage::delete('/uploads/' . $this->image);
+        if($this->image != null){
+            Storage::delete($this->image);
         }
     }
 
     public function getImage()
     {
-        return $this->image ? '/uploads/' . $this->image : '/img/no-image.png';
+        return $this->image ? $this->image : '/img/no-image.png';
     }
 
     public function remove()
